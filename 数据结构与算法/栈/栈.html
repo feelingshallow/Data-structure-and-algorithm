@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+     function Stack(){
+         this.items=[];
+         /*栈的插入操作*/
+         Stack.prototype.push=function(element){
+            this.items.push(element)
+         }
+         /*栈的出栈操作*/
+         Stack.prototype.pop=function(){
+             return this.items.pop()
+         }
+        /*栈的peek操作*/
+        Stack.prototype.peek=function(){
+            return this.items[length-1]
+        }
+        /*栈的toString方法*/
+        Stack.prototype.toString=function(){
+        var str=''
+       for(var i=0;i<this.items.length;i++){
+           str+=' '+this.items[i]
+       }
+           return str;
+        }
+        Stack.prototype.isEmpty=function(){
+            return this.items.length===0
+        }
+        Stack.prototype.size=function(){
+            return this.items.length
+        }
+     }
+     var s=new Stack()
+     s.push(6)
+     s.push(5)
+      /*栈的应用将十进制转化成为二进制 */
+     function dec2bin(decNumber){
+         var stack=new Stack(); 
+         while(decNumber>0){
+             stack.push(decNumber%2); //取余的数组压入栈中
+             decNumber=Math.floor(decNumber/2)//整除后的结果作为下一次取余的数
+         }
+         var binaryString=''
+         while(!stack.isEmpty()){
+             binaryString+=stack.pop()
+         }
+            return binaryString
+     }
+    console.log(dec2bin(100)) 
+    </script>
+</body>
+</html>

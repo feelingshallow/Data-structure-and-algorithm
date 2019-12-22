@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+      /*封装一个双向链表哦*/
+     function DoublyLinkList(){
+         this.head=null
+         this.tail=null
+         this.length=0
+         function Node(data){
+         this.data=data
+         this.prev=null
+         this.next=null
+         }
+        //1.append 方法
+         DoublyLinkList.prototype.append=function(data){
+             //第一步 先创建出来要插入的数据节点
+             var newnode=new Node(data)
+             if(this.length==0){   //如果链表为空那么插入的节点  既是头节点也是尾节点
+                 this.head=newnode     
+                 this.tail=newnode
+             }else{ 
+                 newnode.prev=this.tail  //新节点插入到最后那么 以前的尾节点成为了新节点的上一个
+                 this.tail.next=newnode   //尾节点的下一个就是新节点
+                 this.tail=newnode         //尾节点成为了newnode
+             }
+             this.length += 1
+         }
+        //  2.转化成字符串方法
+        DoublyLinkList.prototype.toString=function(){
+        return this.backString()
+        }
+        DoublyLinkList.prototype.forwardString=function(){
+            var current=this.tail
+            var resultStr=""
+            while(current){
+                resultStr +=current.data+ " "
+                current=current.prev
+            }
+            return resultStr
+        }
+        DoublyLinkList.prototype.backString=function(){
+            var current=this.head
+            var resultStr=""
+            while(current){
+                resultStr += current.data +" "
+                current=current.next
+            }
+            return resultStr
+        }
+     }
+     var list=new DoublyLinkList()
+     list.append('aaa')
+     list.append('bbb')
+     list.append('ccc')
+     console.log(list)
+     console.log(list.toString())
+     console.log(list.forwardString())
+    </script>
+</body>
+</html>

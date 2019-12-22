@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function PriorityQueue() {
+        /*再封装一个内部类*/
+        function QueueElement(element, priority) {
+          this.element = element;
+          this.priority = priority;
+        }
+        this.items = [];
+        PriorityQueue.prototype.enqueue = function(element, priority) {
+          // 1.创建一个QueueElement 对象
+          var queueElement = new QueueElement(element, priority);
+          //2.判断items 是否为空
+          if (this.items.length == 0) {
+            this.items.push(queueElement);
+          } else {
+            var addflag = false;
+            for (var i = 0; i < this.items.length; i++) {
+              if (queueElement.priority < this.items[i].priority) {
+                this.items.splice(i, 0, queueElement);
+                addflag = true;
+                break;
+              }
+            }
+            if (!addflag) {
+              this.items.push(queueElement);
+            }
+          }
+        };
+        PriorityQueue.prototype.dequeue = function() {
+          return this.items.shift();
+        };
+        PriorityQueue.prototype.front = function() {
+          return this.items[0];
+        };
+        PriorityQueue.prototype.isEmpty = function() {
+          return this.items == 0;
+        };
+        PriorityQueue.prototype.toString = function() {
+          return this.items.toString;
+        };
+        PriorityQueue.prototype.size = function() {
+          return this.items.length;
+        };
+      }
+   var pq=new PriorityQueue()
+   pq.enqueue('abc',111)
+   pq.enqueue('cba',100)
+   pq.enqueue('nba',999)
+   pq.enqueue('mba',5)
+   console.log(pq)
+
+    </script>
+  </body>
+</html>

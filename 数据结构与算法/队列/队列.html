@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+     a{
+         width: 100 !important;
+     }
+    </style>
+</head>
+<body>
+    <script>
+      function Queue(element){
+        this.items=[];
+        Queue.prototype.enqueue=function(element){
+            this.items.push(element)
+        }
+        Queue.prototype.dequeue=function(){
+            return this.items.shift()
+        }
+        Queue.prototype.front=function(){
+            return this.items[0]
+        }
+        Queue.prototype.isEmpty=function(){
+            return this.items==0
+        }
+        Queue.prototype.toString=function(){
+            return this.items.toString
+        }
+        Queue.prototype.size=function(){
+            return this.items.length
+        }
+      } 
+    // var queue=new Queue();
+    // queue.enqueue(1)
+    // queue.enqueue(2)
+    // console.log(queue.front())
+    /*面试题：击鼓传花：一个队列 数特定数字 然后读到此数字的人被淘汰*/
+    function trans(arr,num){
+     var queue=new Queue()
+     for(var i=0;i<arr.length;i++){
+         queue.enqueue(arr[i])
+     }
+     while(queue.size()>1){
+     for(var i=0;i<num-1;i++){
+         
+         queue.enqueue(queue.dequeue())
+     }
+      queue.dequeue()
+     }
+     console.log(queue)
+    }
+    var arr=['lisi','zhangsan','wangwu','maliu','xiaoqi']
+    trans(arr,5)
+    </script>
+</body>
+</html>

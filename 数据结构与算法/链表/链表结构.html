@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+      function LinkList() {
+         function Node(data) {
+          this.data=data
+          this.next=null
+         }
+       this.head=null
+       this.length=0
+
+       LinkList.prototype.append=function(data){
+
+           //1.创建新的节点
+        var newNode=new Node(data)
+        //2.判断是否是第一个添加的节点
+            if(this.length==0){ //2.1是第一个节点
+               
+                this.head=newNode
+            }else{              //2.2不是第一个节点
+             var current=this.head
+             while(current.next){ 
+                 current=current.next
+             }                        //current 指向最后一个节点
+             current.next=newNode     
+            }
+            this.length += 1
+       }
+       /* toString 方法 吧链表打印出来*/
+       LinkList.prototype.toString=function(){
+           var resultString=""
+           var current=this.head
+           var index=0
+           while(index++<this.length){
+               resultString +=" "+ current.data
+               current=current.next
+           }
+           return resultString
+       }
+       /*插入方法接受两个参数 位置和数据 */
+       LinkList.prototype.insert=function(position,data){
+          //首先进行判断 1.链表是否为空链表 如果是的话 this。head=newNode   2.对position进行边界值的 判断  首先不能是负数 其次不能超过this。length
+          if(position<0||position>this.length){
+              return false
+          }
+          var newNode=new Node(data)
+          if(this.length==0){  //如果长度为0 直接把new'Node赋值给头结点
+              this.head=newNode
+          }               
+            //长度不为0时 
+          var index=0
+          var current=this.head
+          var previous=null
+          while(index++<position){ //进行遍历 最后current指向被插入的节点  previous 指向前一个
+              previous=current
+              current=current.next
+          }
+           previous.next=newNode  //前一个的next指向新节点
+           newNode.next=current // 新节点的next 指向下一个
+             
+           this.length++   //最后不要忘记让长度加一
+       }
+       /*get 方法传入位置返回当前位置上的data*/
+       LinkList.prototype.get=function(position){  //此处的边界值判断也不能少
+       if(position<0||position>=this.length){
+           return false
+       }
+         var index=0
+         var current =this.head
+         while(index++<position){
+           current=current.next
+         }
+         return current.data
+       }
+       LinkList.prototype.indexOf=function(data){
+           var current=this.head
+           var index=0
+           for(var i=0;i<this.length;i++){
+              if(current.data==data){
+                  return index
+              }else{
+                  current=current.next
+                  index++
+              }
+           }
+           return -1
+             
+       }
+       LinkList.prototype.update=function(position,newdata){
+           //越界值判断
+           if(position<0||position>=this.length){
+           return false
+       }
+          var current=this.head
+          var index=0
+          while(index++<position){
+              current=current.next
+
+          }
+           current.data=newdata
+           return true
+       }
+       LinkList.prototype.removeAt=function(position){
+        if(position<0||position>=this.length){
+           return false
+       }
+   
+        var current=this.head
+        
+        if(position==0){
+            this.head=this.head.next
+        }else{
+            var previous=null
+            var index=0
+        while(index++<position){
+            previous=current
+            current=current.next
+        }
+         previous.next=current.next
+        }
+        
+         this.length--
+         return current.data
+       }
+       LinkList.prototype.remove=function(data){
+         var index=   this.indexOf(data)
+        return this.removeAt(index)
+       }
+      }
+      LinkList.prototype.isEmpty=function(){
+          return this.length==0
+      }
+      LinkList.prototype.size=function(){
+          return this.length
+      }
+      var link=new LinkList()
+      link.append('aaa')
+      link.append('bbb')
+      link.append('ccc')
+      link.insert(1,'nba')
+      console.log(link.indexOf('nba'))
+      console.log(link.get(2))
+      console.log(link.toString())
+      console.log(link.size())
+    </script>
+</body>
+</html>
