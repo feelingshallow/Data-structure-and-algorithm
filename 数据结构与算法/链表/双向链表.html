@@ -46,6 +46,7 @@
             return resultStr
         }
         DoublyLinkList.prototype.backString=function(){
+            
             var current=this.head
             var resultStr=""
             while(current){
@@ -54,14 +55,124 @@
             }
             return resultStr
         }
+    DoublyLinkList.prototype.insert=function(position,data){
+        var newnode=new Node(data)
+      var index=0;
+      var prev=null
+      var current=this.head
+      //越界值判断
+      if(position<0||position>this.length){
+          return false
+      }
+
+      if(this.length==0) {
+          this.head=newnode
+          this.tail=newnode
+      }
+      if(position==0){
+        this.head.prev=newnode
+        newnode.next=this.head
+         this.head=newnode
+         this.length++
+      }else if(position==this.length){
+            newnode.prev=this.tail  //新节点插入到最后那么 以前的尾节点成为了新节点的上一
+            this.tail.next=newnode   //尾节点的下一个就是新节点
+             this.tail=newnode        
+             this.length++
+      }else{
+        while(index++<position){
+          prev=current
+          current=current.next
+
+      }
+   
+       prev.next=newnode
+       newnode.prev=prev
+       newnode.next=current
+       current.prev=newnode
+         this.length++
+      }
+     return true
+    }
+    //get方法
+     DoublyLinkList.prototype.get=function(position){
+       var index=0
+       var current=this.head
+       while(index++<position){
+           current=   current.next
+       }
+       return current.data
+     }
+//indexOf方法
+    DoublyLinkList.prototype.indexOf=function(data){
+        var current=this.head
+        var index=0
+        while(current){
+            if(current.data==data){
+                return  index
+            }
+            current=current.next
+            index++
+        }
+        return -1
+    }
+    //update 更新操作
+    DoublyLinkList.prototype.update=function(position,newdata){
+        var current=this.head
+        var index=0
+        while(index++ < position) {
+            current=current.next
+        }
+        current.data=newdata
+    }
+    //removeAt 删除特定位置的数据节点
+    DoublyLinkList.prototype.removeAt=function(position){
+    //越界判断
+    if(position<0||position>this.length){
+        return false
+    } 
+    if(this.length==1){
+        this.head=null
+        this.tail=null
+    }else if(position==0){
+        this.head.next.prev=null
+        this.head=this.head.next
+    }else if(position==this.length-1){
+        this.tail.prev.next=null
+        this.tail=this.tail.prev
+    }else{
+      var index=0
+      var current=this.head
+      while(index++<position){
+          current=current.next
+      }
+         current.prev.next=current.next
+        current.next.prev=current.prev
+        this.length--
+    }
+    }
+    DoublyLinkList.prototype.remove=function(data){
+           var index=this.indexOf(data)
+           this.removeAt(index)
+    }
+    //判空
+    DoublyLinkList.prototype.isEmpty=function(){
+      return  this.length==0
+    }
+    //size
+    DoublyLinkList.prototype.size=function(){
+        return this.length
+    }
      }
      var list=new DoublyLinkList()
      list.append('aaa')
      list.append('bbb')
      list.append('ccc')
-     console.log(list)
-     console.log(list.toString())
-     console.log(list.forwardString())
+     console.log(list.insert(3,'ssd'))
+     console.log(list.removeAt(0))
+     console.log(list.length)
+     console.log(list.toString())   
+     
     </script>
 </body>
 </html>

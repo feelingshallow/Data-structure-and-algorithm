@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+          function maxInWindows(num, size)
+{
+        var start=0;
+        var end=size;
+        var result=[]
+        while(end<=num.length){
+            var newarr=num.slice(start,end)
+            console.log(newarr)
+           var max=   Math.max.apply(window,newarr)
+           result.push(max)
+           start++
+           end++
+        }
+        console.log(result)
+       return result
+}      
+var num=[2,3,4,2,6,2,5,1]
+        maxInWindows(num,3)
+        
+        </script>
+</body>
+</html>

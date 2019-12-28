@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+      function HashTable(){
+        this.stroage=[];
+        this.count=0;
+        this.limit=7;
+        HashTable.prototype.HashFunc=function(str,size){
+        var hashCode=0
+        for(var i=0;i<str.length;i++){
+           hashCode=hashCode *37  + str.charCodeAt(i)
+
+        }
+    
+       var index=hashCode % size
+       return index
+     }
+    //   添加操作 如果key存在其实就是修改操作
+       HashTable.prototype.put=function(key,value){
+        // 1.  根据key值获取index
+        var index= this.HashFunc(key,this.limit)
+        // 2. 根据index取出对应的bucket
+         var bucket=this.stroage[index]
+        //  3.判断改bucket是否为空 如果为空新建一个数组
+         if(bucket==null){
+             bucket=[]
+             this.stroage[index]=bucket
+         }
+        //  4.判断是否是修改数据
+        for(var i=0;i<bucket.length;i++) {
+            var tuple=bucket[i]
+            if(tuple[0]==key){
+                tuple[1]=value
+                return
+            }
+        }
+        // 5.添加
+        bucket.push([key,value])
+        this.count++
+        if(this.count>this.limit*0.75){
+            this.resize(this.limit*2)
+        }
+       }
+    //    获取操作
+      HashTable.prototype.get=function(key){
+        //   1.根据key值获取 数组位置index
+        var index=this.HashFunc(key,this.limit)
+        // 2. 找到bucket
+        var bucket=this.stroage[index]
+        // 3.判断是否为空
+        if(bucket===null){
+            return null
+        }
+        // 4.不为空就遍历数组
+        for(var i=0;i<bucket.length;i++) {
+            var tuple=bucket[i]
+            if(tuple[0]==key){
+                return tuple[1]
+            }
+        }
+        // 5.依然没有找到
+        return null
+      }
+    //   删除操作
+     HashTable.prototype.remove=function(key){
+        //   1.根据key值获取 数组位置index
+        var index=this.HashFunc(key,this.limit)
+       // 2. 找到bucket
+       var bucket=this.stroage[index]
+        // 3.判断是否为空
+        if(bucket===null){
+            return null
+        }
+        // 4.不为空就遍历数组
+        for(var i=0;i<bucket.length;i++) {
+            var tuple=bucket[i]
+            if(tuple[0]==key){
+                bucket.splice(i,1)
+                this.count--
+                return tuple[1]
+            }
+        }
+        // 缩小容量
+        if(this.limit>7&&this.count>this.limit*0.25){
+            this.resize(Math.floor(this.limit/2))
+        }
+        //  依然没有找到 return null
+        return null
+     }
+    //   其他方法
+    // 判断哈希表是否为null
+    HashTable.prototype.isEmpty=function(){
+        return this.count==0
+      }
+      HashTable.prototype.size=function(){
+          return this.count
+      }
+    //   放大和缩小容量 的函数
+      HashTable.prototype.resize=function(newLimit){
+        //  1. 把之前的数组放到oldstroage
+          var oldStroage=this.stroage
+        // 2.重置所有属性
+        this.stroage=[]
+        this.limit=newLimit;
+        this.count=0
+        // 3.遍历旧数组中的bucket
+        for(var i=0;i<oldStroage.length;i++){
+            var bucket=oldStroage[i]
+            if(bucket==null){
+                continue
+            }
+            for(var j=0;j<bucket.length;j++){
+                var tuple=bucket[j]
+                 this.put(tuple[0],tuple[1])
+            }
+        }
+      }
+      }    
+        var hash=new HashTable()
+        hash.put('nba',123)
+        hash.put('mba',123)
+        hash.put('dna',456)
+        console.log(hash.get('mba'))
+        console.log(hash)
+    </script>
+</body>
+</html>

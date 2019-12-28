@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 设计哈希函数
+        // 1.将字符串转成比较大的数字： hashCOde
+        // 2.将大的数字hashCOde压缩到数组范围
+     function HashFunc(str,size){
+        var hashCode=0
+        for(var i=0;i<str.length;i++){
+           hashCode=hashCode *37  + str.charCodeAt(i)
+
+        }
+    //   3.取余操作
+    var index=hashCode % size
+    return index
+     }
+     console.log(HashFunc('nba',7))
+    </script>
+</body>
+</html>
