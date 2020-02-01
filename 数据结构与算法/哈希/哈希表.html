@@ -45,7 +45,9 @@
         bucket.push([key,value])
         this.count++
         if(this.count>this.limit*0.75){
-            this.resize(this.limit*2)
+            var  newSize=this.limit*2
+            var newPrime=this.getPrime(newSize)
+            this.resize(newPrime)
         }
        }
     //    获取操作
@@ -89,7 +91,9 @@
         }
         // 缩小容量
         if(this.limit>7&&this.count>this.limit*0.25){
-            this.resize(Math.floor(this.limit/2))
+               var newSize=Math.floor(this.limit/2)
+               var  newPrime=this.getPrime(newSize)
+            this.resize(newPrime)
         }
         //  依然没有找到 return null
         return null
@@ -121,6 +125,22 @@
                  this.put(tuple[0],tuple[1])
             }
         }
+      }
+    //   判断质数
+      HashTable.prototype.isPrime=function(num){
+            var temp=parseInt(Math.sqrt(num))
+            for(var i=2;i<temp;i++){
+                if(temp%i==0) {
+                    return false
+                }
+            }
+            return true
+      }
+      HashTable.prototype.getPrime=function(num){
+        while(!this.isPrime(num)){
+            num++
+        }
+        return num
       }
       }    
         var hash=new HashTable()
