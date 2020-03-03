@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+     function Outputnumber(count){
+         (function(){
+         for(var i=0;i<count;i++){
+             console.log(i)
+         }})()
+         var i
+         console.log(i)
+     } 
+// 在匿名函数中定义的任何变量，都会在执行结束时被销毁。因此变量i只能在循环中使用
+      Outputnumber(5)
+    
+    </script>
+</body>
+</html>

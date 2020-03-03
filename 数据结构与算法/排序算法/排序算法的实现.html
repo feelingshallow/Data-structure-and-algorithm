@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function ArrayList(){
+            // 属性
+            this.array=[];
+            // 方法
+            ArrayList.prototype.insert=function(item){
+                this.array.push(item)
+            }
+            // toString
+            ArrayList.prototype.toString=function(){
+                return this.array.join("-")
+            }
+            // 
+            ArrayList.prototype.swap=function(m,n){
+                      var temp=this.array[m]
+                      this.array[m]=this.array[n]
+                      this.array[n]=temp
+            }
+            // 冒泡排序
+            ArrayList.prototype.bubblesort=function(){
+                var length=this.array.length
+                for(var j=length-1;j>=0;j--){
+                for(var i=0;i<j;i++ ){
+                    if(this.array[i]>this.array[i+1]){
+                        [this.array[i],this.array[i+1]]=[this.array[i+1],this.array[i]]
+                    }
+                }
+            }
+            }
+            // 选择排序   原理是通过排最小值
+            ArrayList.prototype.selectsort=function(){
+                var length=this.array.length
+                var minIndex
+                for(var i=0;i<length-1;i++){
+                  minIndex=i;
+                  for(var j=i+1;j<length;j++){
+                      if(this.array[minIndex]>this.array[j]){
+                         minIndex =j
+                      }
+                  }
+                  temp = this.array[i];
+        this.array[i] = this.array[minIndex];
+        this.array[minIndex] = temp;
+                }
+              
+            }
+            // 插入排序  核心是局部有序
+        ArrayList.prototype.insertSort=function(){
+            // 1.获取数组的长度
+           var length=this.array.length;
+        //    2.外层循环：从第一个位置开始获取数据向前面局部有序的进行插入
+           for(var i=1;i<length;i++){
+            //    3.内层循环 获取i位置的元素和前面局部有序的元素依次比较
+               var temp=this.array[i]
+
+             var j=i;
+             while(this.array[j-1]>temp&&j>0){
+                 this.array[j]=this.array[j-1];
+                 j--
+             }
+            //  4.将j位置的数据防止temp
+             this.array[j]=temp
+           }
+
+        }
+        //    希尔排序  插入的排序的升级
+         ArrayList.prototype.shellSort=function(){
+            //  1.获取数组的长度
+            var length=this.array.length
+            // 2.初始化的增量（gap ->间隔/2）
+            var gap=Math.floor(length/2)
+            // 3.while 循环（gap不断的减小）
+            while(gap>=1){
+            //  4.以gap作为间隔，进行分组，对分组进行插入排序
+             for(var i=gap;i<length;i++){
+                 var temp =this.array[i]
+                 var j=i;
+                 while(this.array[j-gap]>temp &&j>gap-1){
+                     this.array[j]=this.array[j-gap]
+                     j-=gap;
+
+                 }
+                //  5.将 j位置的元素赋值temp
+                this.array[j]=temp
+             }
+             gap=Math.floor(gap/2)
+            }
+         }
+//      快速排序 枢纽是中位数 
+//   选择枢纽
+       ArrayList.prototype.median=function(left,right){
+          var  center=Math.floor((left+right)/2);
+        //   判断大小 并且进行交换
+        if(this.array[left]>this.array[center]){
+            this.swap(left,center)
+        }
+        if(this.array[center]>this.array[right]){
+            this.swap(center,right)
+        }
+        if(this.array[left]>this.array[right]){
+            this.swap(left,right)
+        }
+        this.swap(center,right-1)
+        return  this.array[right-1]
+       }
+// 
+      ArrayList.prototype.quickSort=function(){
+          this.quick()
+      }
+      ArrayList.prototype.quick=function(left,right){
+        if (left >= right) return;
+const pivot = this.median(left, right);
+var i = left;
+var j = right - 1;
+while (true) {
+while (this.array【++i】 < pivot) {}
+while (this.array【--j】 > pivot) {}
+if (i <= j) {
+this.swap(i, j);
+} else {
+break;
+}
+}
+// 江枢纽位置放在i位置
+if (i < right - 1) {
+this.swap(i, right - 1);
+}
+
+// 分而治之
+this.quick(left, i - 1);
+this.quick(i, right);
+      }
+        }
+        var list=new ArrayList()
+        list.insert(15)
+        list.insert(8)
+        list.insert(66)
+        list.insert(52)
+        list.insert(16)
+        list.insert(1)
+        list.insert(35)
+        list.insert(65)
+      list.shellSort()
+      alert(list)
+        </script>
+</body>
+</html>

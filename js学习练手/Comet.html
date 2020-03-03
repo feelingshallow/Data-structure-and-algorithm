@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+      function createStreamimgClient(url,progress,finished){
+          var xhr= new XMLHttpRequest(),
+             received=0;
+            xhr.open("get",url,true);
+            xhr.onreadystatechange=function(){
+                var result;
+                if(xhr.readyState == 3){
+                    result=xhr.responseText.substring(received);
+                    received += result.length;
+                    // 调用
+                    progress(result)
+                }else if(xhr.readyState == 4){
+                    finished(result)
+                }
+            }
+            xhr.send(null)
+            return xhr;
+      }
+     var client=createStreamimgClient("http://www.fengcai.com/admin/admin/createhash",function(data){
+          alert("received" + data);},function(data){
+              alert("DOne")
+          
+          
+     })
+    
+    </script>
+</body>
+</html>

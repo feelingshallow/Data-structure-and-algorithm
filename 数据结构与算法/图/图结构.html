@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="dict.js"></script>
+    <script>
+      function graph(){
+//  属性： 定点 边
+       this.vertexes=[]
+       this.edges=new Dictionary()
+// 方法
+    graph.prototype.addVertex=function(v){
+        this.vertexes.push(v)
+        this.edges.set(v,[])
+    }
+    graph.prototype.addEdge=function(v1,v2){
+        this.edges.get(v1).push(v2)
+        // this.edges.get(v2).push(v1)
+    }
+    graph.prototype.toString=function(){
+        var resultString=""
+        for(var i=0;i<this.vertexes.length;i++){
+            resultString += this.vertexes[i]+'->'
+            var vEdge=this.edges.get(this.vertexes[i])
+            for(var j=0;j<vEdge.length;j++){
+                resultString +=vEdge[j]+' '
+            }
+            resultString +='\n'
+        }
+        return resultString
+    }
+    graph.prototype.initializeColor=function(){
+        var colors=[]
+        for(var i=0; i<this.vertexes.length;i++){
+            colors[this.vertexes='white']
+        }
+    }
+      }
+    //   测试代码
+    // 创建图结构
+    var g=new graph()
+    var myVertexes=['A','B','C','D','E','F','G','I']
+    for(var i=0;i<myVertexes.length;i++){
+        g.addVertex(myVertexes[i])
+    }
+    g.addEdge('A','B')
+    g.addEdge('A','C')
+    g.addEdge('A','D')
+    g.addEdge('C','D')
+    g.addEdge('C','G')
+    g.addEdge('D','G')
+    g.addEdge('D','H')
+    g.addEdge('B','E')
+    g.addEdge('B','F')
+    g.addEdge('E','I')
+    console.log(g.toString())
+    </script>
+</body>
+</html>
