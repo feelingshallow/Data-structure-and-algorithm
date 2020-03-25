@@ -2,9 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+<script>
+    function quickSort(arr) {
+        if(arr.length<=1){
+            return arr
+        }
+        var povitIndex=Math.floor(arr.length/2);
+        var povit=arr.splice(povitIndex,1)[0];
+        var left=[];
+        var right=[];
+        for(var i=0;i<arr.length;i++){
+            if(arr[i]>povit){
+                right.push(arr[i])
+            }else {
+                left.push(arr[i])
+            }
+        }
+        return quickSort(left).concat(povit,quickSort(right))
+    }
+    var arr=[5,3,4,1,2]
+    console.log(quickSort(arr));
+</script>
 </body>
 </html>

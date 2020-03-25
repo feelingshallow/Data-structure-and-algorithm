@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+     var arr=[1,[2,3,[4]]]
+     var newarr=function(arr){
+         return arr.reduce((pre,cur)=> {
+                 return pre.concat(Array.isArray(cur) ? newarr(cur) : cur)
+             }
+         ,[])
+     }
+    console.log(newarr(arr))
+</script>
+</body>
+</html>

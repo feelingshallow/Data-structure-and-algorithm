@@ -2,9 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+<script>
+    function add(...args) {
+           let sum=args.reduce((pre,cur)=>pre+cur)
+            var next=function (...b) {
+                sum+=b.reduce((pre,cur)=>pre+cur)
+                return next
+            }
+        next.toString=function () {
+            return sum
+        }
+            return next
+
+    }
+
+    console.log(add(1, 2)(5));
+</script>
 </body>
 </html>

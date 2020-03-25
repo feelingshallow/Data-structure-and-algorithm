@@ -2,9 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+<script>
+    var obj={
+        a:{b:'hello'},
+        person:{
+            name:{
+                frist:'li'
+            }
+        }
+    }
+    function get(obj,property) {
+        var res=""
+      property.split(".").map((v)=>res+=`["${v}"]`)
+      res=res.substr(1, res.length-2)
+        console.log(obj["person"]);
+         console.log(obj[res])
+
+    }
+
+    console.log(get(obj,'person'));
+</script>
 </body>
 </html>

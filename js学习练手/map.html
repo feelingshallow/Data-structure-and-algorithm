@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+     var arr1=[{"region":"华北地区","address":"北京","description":"嗯嗯呢"},{"region":"华东地区","address":"杭州","description":"还行吧"},{"region":"华北地区","address":"太原","description":"垃圾地方"}]
+        var arr=[]
+      
+        for(let i=0;i<arr1.length;i++){
+            var obj={}
+            console.log(arr1[i])
+            obj.region=arr1[i].region
+            obj.children=[{
+                address:arr1[i]['address'],
+                description:arr1[i]['description']
+            }]
+            arr.push(obj)
+            obj=null
+        }
+         console.log(arr)
+    </script>
+</body>
+</html>

@@ -2,9 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+<script>
+    var t=new Promise(function (resolve, reject) {
+        var i=0;
+        setTimeout(function () {
+            i++;
+
+            resolve(i)
+        },1000)
+    })
+    t.then(res=>console.log(res))
+</script>
 </body>
 </html>

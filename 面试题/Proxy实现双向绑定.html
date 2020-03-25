@@ -2,9 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+<span id="in"></span>
+<br>
+<input type="text" id="put">
+
+<script>
+
+  var put=document.getElementById('put')
+  var inner=document.getElementById('in')
+  console.log(put);
+  console.log(inner);
+  var obj={
+      txt:''
+  }
+  obj=new Proxy(obj,{
+      set(obj,prop,value){
+          console.log(1);
+          obj[prop]=value;
+          observe()
+      },
+      get(obj,prop){
+          console.log(1)
+          return obj[prop]
+      }
+  })
+    function observe() {
+        inner.innerHTML=obj.txt
+    }
+    put.oninput=function (e) {
+
+        obj.txt=this.value
+    }
+
+</script>
 </body>
 </html>

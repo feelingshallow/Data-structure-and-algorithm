@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function create() {
+        let obj=new Object();
+        let Con=[].shift().call(arguments)
+        obj.__proto__=Con.prototype;
+        Con.apply(obj,arguments)
+        return  obj
+    }
+</script>
+</body>
+</html>
