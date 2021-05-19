@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       function f(){
+           console.log("hello")
+       }
+       const func=new Proxy(f,{
+           _count:0,
+           apply(target,context,args){
+                 console.log("ni aplly 你妈呢")
+                console.log(`this function has been called ${++this._count} times`);
+           }
+       })
+       func()
+    
+    </script>
+</body>
+</html>

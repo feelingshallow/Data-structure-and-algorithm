@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+     var reformat = function(s) {
+      var arr=s.split("");
+       var s=arr.shift(0)
+     
+         for(var i=1;i<arr.length;i++){
+             if(Number(s)==NaN){
+                 if(Number(arr[i])==NaN){
+                     i++;
+                 }else{
+                     s+=arr.splice(i,1)
+                 }  
+        
+             }else{
+                if(Number(arr[i])==NaN){
+                    s+=arr.splice(i,1)
+                 }else{
+                     i++
+                 }  
+             }
+         }
+      
+return s
+};
+     reformat("a0b1c2")
+    
+    </script>
+</body>
+</html>

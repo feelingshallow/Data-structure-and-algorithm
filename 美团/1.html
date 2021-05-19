@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script >
+        var today=3
+     var   time="02:50";
+     var n=2540
+var arr=time.split(":");
+var h,min;
+var resday=today
+    if(arr[1]<n){
+    if(arr[0]*60>n){
+     
+       h= Math.floor((arr[0]*60-n+parseInt(arr[1]))/60)
+       min= (arr[0]*60-n+parseInt(arr[1]))%60;
+       if(h<10){
+           h='0'+h
+       }
+       console.log(resday);
+       console.log(h+":"+min)
+    }else if(n<24*60){
+        
+       resday--
+       if(resday<=0){
+           resday=7
+       }
+        h=24-Math.ceil((n-arr[0]*60-arr[1])/60);
+        min=60-((n-arr[0]*60-arr[1])%60);
+        if(h<10){
+           h='0'+h
+       }       
+        console.log(resday);
+        console.log(h+":"+min)
+    }else{
+        resday=resday-Math.ceil((n/(24*60)));
+        console.log(resday)
+        if(resday<=0){
+          resday=7-  Math.abs(resday%7)
+        }
+        n=n%(24*60)
+        h=24-Math.ceil((n-arr[0]*60-arr[1])/60);
+        min=60-((n-arr[0]*60-arr[1])%60);
+        if(h<10){
+           h='0'+h
+       }       
+        console.log(resday);
+        console.log(h+":"+min)
+    }
+}else{
+    console.log(today);
+  h=arr[0];
+     min=arr[1]-n
+    console.log(h+":"+min)
+}
+    </script>
+
+</body>
+</html>

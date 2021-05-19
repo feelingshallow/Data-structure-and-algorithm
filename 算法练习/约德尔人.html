@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(str, num) {
+        var arr = str.split("").map(v => {
+          if (/[0-9a-z]/i.test(v)) {
+           return v = 1;
+          } else {
+            return  v = 0;
+          }
+        });
+         var flag=0;
+         for(var i=0;i<arr.length;i++){
+             if(arr[i]==num[i]){
+                 flag++
+             }
+         }  
+        console.log((flag/arr.length).toFixed(4)*100+"%")
+      }
+      solution('@!%12dgsa','010111100')
+    </script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+          var flag=0
+       aa: for (var j = 0; j < arr.length; j++) {
+         bb: for (var i = 0; i < arr.length; i++) {
+            if (i == j) {
+              continue;
+            } else {
+              if (arr.indexOf(arr[j] - arr[i])!=-1) {
+           
+                console.log(true);
+                break aa;
+              }
+            }
+            
+          }
+          flag++
+        }
+
+        if(flag==arr.length){
+            console.log(false)
+        }
+      }
+      console.log(solution([1,5,8,66]));
+    </script>
+  </body>
+</html>

@@ -14,16 +14,22 @@
             }
         }
     }
-    function get(obj,property) {
-        var res=""
-      property.split(".").map((v)=>res+=`["${v}"]`)
-      res=res.substr(1, res.length-2)
-        console.log(obj["person"]);
-         console.log(obj[res])
+    function a(){
+
+    }
+    function get(obj) {
+        return new Proxy(a,{
+            apply(target,thisobj,arg){
+              return obj===undefined?arg:obj
+            },
+            get(target,prop){
+                return obj[prop]
+            }
+        })
 
     }
 
-    console.log(get(obj,'person'));
+    console.log(get(obj).person.name);
 </script>
 </body>
 </html>

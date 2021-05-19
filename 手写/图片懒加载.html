@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     <style>
+     .box{
+         width: 200px;
+         height: 300px;
+         background: red;
+     }
+      
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <img src="下载.jpg"data-src='七层体系结构图.png' alt="">
+    <script>
+    
+    let img = document.getElementsByTagName("img");
+ 
+
+
+
+window.addEventListener('scroll', lazyload);
+
+function lazyload() {
+  let viewHeight = document.documentElement.clientHeight;//视口高度
+  let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;//滚动条卷去的高度
+  console.log(viewHeight)
+ console.log(scrollTop)
+    // 元素现在已经出现在视口中
+console.log(img[0].offsetTop)
+    if(img[0].offsetTop < scrollTop + viewHeight) {
+      setTimeout(function(){
+        img[0].src = img[0].getAttribute("data-src");
+      },2000)
+    
+    
+    }
+ 
+}
+    
+    
+    </script>
+</body>
+</html>
