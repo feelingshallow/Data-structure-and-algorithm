@@ -11,4 +11,19 @@ nodejs的事件是使用events模块
 来绑定和监听事件
 
 
-nodejs 里面所有的
+nodejs 里面所有的异步io操作都会在完成时，
+发送一个事件到事件队列
+
+events 这个模块只有一个对象，
+events.EventEmitter。
+他的核心，“事件触发与监听功能的封装 ”
+
+在nodejs中，有一个Buffer类，它用来创建一个专门存放二进制数据的缓存区。
+buffer类是随nodejs的核心一起安装的，
+这些原始数据是存储在buffer类的实例里，一个buffer类相当于是一个整数的数组，
+它相当于是划出了一块自己的内存空间
+
+Buffer类 的实例它用于表实编码字符的序列，
+他支持utf-8 base64 acsll
+
+创建一个buffer类
